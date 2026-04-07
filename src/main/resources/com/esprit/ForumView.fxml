@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.esprit.controllers.ForumController"
+            styleClass="app-root"
+            stylesheets="@forum.css">
+
+    <!-- ══ TOP BAR ══════════════════════════════════════════════════════════ -->
+    <top>
+        <HBox styleClass="topbar" alignment="CENTER_LEFT" spacing="20">
+            <Label styleClass="linkedin-badge" text="in"/>
+            <Label styleClass="brand" text="LinguaLearn Forum"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label styleClass="nav-item nav-item-active" text="🏠  Accueil"/>
+            <Label styleClass="nav-item" text="👥  Réseau"/>
+            <Label styleClass="nav-item" text="🔔  Notifs"/>
+        </HBox>
+    </top>
+
+    <!-- ══ MAIN CONTENT ═════════════════════════════════════════════════════ -->
+    <center>
+        <HBox spacing="20" alignment="TOP_CENTER" style="-fx-padding: 20 40;">
+
+            <!-- Left sidebar (optional profile card) -->
+            <VBox spacing="10" prefWidth="220" minWidth="220">
+                <VBox styleClass="card" spacing="8">
+                    <Label styleClass="card-title" text="Mon profil"/>
+                    <Label styleClass="section-subtitle" text="LinguaLearn User"/>
+                    <Separator/>
+                    <Label styleClass="section-subtitle" text="📝 Vos publications"/>
+                </VBox>
+            </VBox>
+
+            <!-- ── FEED COLUMN ─────────────────────────────────────────── -->
+            <VBox spacing="14" prefWidth="580" maxWidth="580">
+
+                <!-- ── POST COMPOSER CARD ──────────────────────────────── -->
+                <VBox styleClass="card post-composer" spacing="12">
+                    <Label styleClass="section-title" text="Créer une publication"/>
+                    <Separator/>
+
+                    <TextField fx:id="tfPubTitre" promptText="Titre de la publication…"
+                               styleClass="text-input"/>
+                    <HBox spacing="10">
+                        <TextField fx:id="tfPubType" promptText="Type (ex: Article, Annonce…)"
+                                   styleClass="text-input" HBox.hgrow="ALWAYS"/>
+                        <TextField fx:id="tfPubLien" promptText="Lien (optionnel)"
+                                   styleClass="text-input" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                    <TextArea fx:id="taPubContenu" promptText="Exprimez-vous…"
+                              styleClass="text-area" prefRowCount="4" wrapText="true"/>
+
+                    <HBox spacing="10" alignment="CENTER_RIGHT">
+                        <Label fx:id="lblPubMessage" styleClass="status-label"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="Annuler" styleClass="btn btn-light"
+                                onAction="#handleAnnulerEdit"/>
+                        <Button text="Publier" styleClass="btn btn-primary"
+                                onAction="#handlePublier"/>
+                    </HBox>
+                </VBox>
+
+                <!-- ── FEED SCROLL ─────────────────────────────────────── -->
+                <ScrollPane fx:id="feedScroll" fitToWidth="true"
+                            styleClass="feed-scroll" VBox.vgrow="ALWAYS"
+                            prefViewportHeight="600">
+                    <VBox fx:id="feedWrapper" spacing="14" styleClass="feed-wrapper">
+                        <padding><Insets bottom="20"/></padding>
+                    </VBox>
+                </ScrollPane>
+            </VBox>
+
+            <!-- Right sidebar -->
+            <VBox spacing="10" prefWidth="220" minWidth="220">
+                <VBox styleClass="card" spacing="8">
+                    <Label styleClass="card-title" text="À la une"/>
+                    <Label styleClass="section-subtitle" wrapText="true"
+                           text="Retrouvez ici les publications les plus populaires de la communauté LinguaLearn."/>
+                </VBox>
+            </VBox>
+
+        </HBox>
+    </center>
+</BorderPane>
